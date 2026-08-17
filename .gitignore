@@ -1,0 +1,9 @@
+node_modules
+dist
+
+# Repo riêng, được clone vào đây (haitt88/Ti-ng-c-A1)
+Tiếng Đức A1/
+*.local
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
