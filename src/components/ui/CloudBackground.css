@@ -1,0 +1,29 @@
+.cloud-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.cloud {
+  position: absolute;
+}
+
+.cloud-1 {
+  top: 8%;
+  left: -5%;
+  animation: float 8s ease-in-out infinite;
+}
+
+.cloud-2 {
+  top: 25%;
+  right: -3%;
+  animation: float 10s ease-in-out infinite 1s;
+}
+
+.cloud-3 {
+  bottom: 20%;
+  left: 10%;
+  animation: float 12s ease-in-out infinite 2s;
+}

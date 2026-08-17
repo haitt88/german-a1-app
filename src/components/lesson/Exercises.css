@@ -1,0 +1,349 @@
+.ex {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 2px solid #e3f0fc;
+  border-radius: var(--radius);
+  padding: 18px 16px;
+  box-shadow: var(--shadow);
+  animation: fadeIn 0.3s ease;
+}
+
+.ex__q {
+  font-size: 18px;
+  color: var(--blue-deep);
+  line-height: 1.35;
+}
+
+.ex__qvi {
+  margin: -6px 0 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+
+.ex__options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ex__options--row {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.ex__explain {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #8a6100;
+  background: #fff8dd;
+  border-radius: 14px;
+  padding: 10px 12px;
+}
+
+.ex__check {
+  border: none;
+  background: linear-gradient(135deg, var(--blue-bright), var(--blue-deep));
+  color: #fff;
+  font-weight: 800;
+  font-size: 16px;
+  padding: 13px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow);
+}
+
+.ex__check:disabled {
+  opacity: 0.45;
+}
+
+/* ---- Nút đáp án ---- */
+
+.opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  min-height: 54px;
+  padding: 12px 14px;
+  border-radius: 18px;
+  border: 3px solid #cfe6fb;
+  background: #fff;
+  color: var(--text);
+  font-weight: 800;
+  font-size: 16px;
+  transition: transform 0.12s, border-color 0.15s, background 0.15s;
+}
+
+.opt:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.opt:disabled {
+  opacity: 0.55;
+}
+
+.opt__letter {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #eaf5ff;
+  color: var(--blue-deep);
+  font-size: 14px;
+}
+
+.opt.is-right {
+  border-color: var(--success);
+  background: #eafff1;
+  opacity: 1;
+}
+
+.opt.is-wrong {
+  border-color: var(--danger);
+  background: #fff2f5;
+}
+
+.opt--chip {
+  min-height: 48px;
+  flex: 1 1 30%;
+  justify-content: center;
+  text-align: center;
+  font-size: 17px;
+}
+
+.opt--check .opt__box {
+  flex-shrink: 0;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  border: 2px solid #cfe6fb;
+  color: #fff;
+  font-size: 15px;
+}
+
+.opt--check.is-chosen {
+  border-color: var(--blue-bright);
+  background: #eef7ff;
+}
+
+.opt--check.is-chosen .opt__box {
+  background: var(--blue-bright);
+  border-color: var(--blue-bright);
+}
+
+/* ---- Điền chỗ trống ---- */
+
+.fill__sentence {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--blue-deep);
+  text-align: center;
+  background: #f2f9ff;
+  border: 3px dashed #a9d6ff;
+  border-radius: 20px;
+  padding: 18px 14px;
+  letter-spacing: 0.3px;
+}
+
+.fill__sentence.is-solved {
+  border-style: solid;
+  border-color: var(--success);
+  background: #eafff1;
+}
+
+.fill__vi {
+  margin: -4px 0 0;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+
+/* ---- Sắp xếp ---- */
+
+.order__slot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  min-height: 64px;
+  padding: 12px;
+  border-radius: 20px;
+  border: 3px dashed #a9d6ff;
+  background: #f7fbff;
+}
+
+.order__slot.is-solved {
+  border-style: solid;
+  border-color: var(--success);
+  background: #eafff1;
+}
+
+.order__placeholder {
+  font-size: 14px;
+  font-weight: 700;
+  color: #9fb4ca;
+}
+
+.order__pool {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.chip {
+  border: 3px solid #cfe6fb;
+  background: #fff;
+  color: var(--text);
+  font-weight: 800;
+  font-size: 16px;
+  padding: 11px 15px;
+  border-radius: 14px;
+  box-shadow: 0 3px 8px rgba(77, 166, 255, 0.15);
+}
+
+.chip:active {
+  transform: scale(0.96);
+}
+
+.chip--picked {
+  border-color: var(--blue-bright);
+  background: #eef7ff;
+}
+
+/* ---- Đánh vần ---- */
+
+.spell__listen {
+  align-self: center;
+  border: 2px solid var(--blue-bright);
+  background: #fff;
+  color: var(--blue-deep);
+  font-weight: 800;
+  font-size: 14px;
+  padding: 9px 16px;
+  border-radius: 999px;
+}
+
+.spell__slots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.spell__slot {
+  width: 46px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  border: 3px solid #cfe6fb;
+  background: #f7fbff;
+  font-size: 26px;
+  font-weight: 800;
+  color: #b9cee1;
+}
+
+.spell__slot.is-filled {
+  border-color: var(--success);
+  background: #eafff1;
+  color: var(--blue-deep);
+  animation: pop 0.3s ease;
+}
+
+.spell__keys {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.spell__key {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  border: 3px solid #ffd6e3;
+  background: linear-gradient(180deg, #ffffff, #fff5f8);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--blue-deep);
+}
+
+.spell__key:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.spell__key.is-wrong {
+  border-color: var(--danger);
+  background: #fff2f5;
+}
+
+.spell__undo {
+  align-self: center;
+  border: none;
+  background: #f0f4f8;
+  color: var(--text-sub);
+  font-weight: 800;
+  font-size: 13px;
+  padding: 8px 14px;
+  border-radius: 999px;
+}
+
+/* ---- Ghép hình ---- */
+
+.match {
+  display: flex;
+  gap: 12px;
+}
+
+.match__col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.match__emoji {
+  height: 62px;
+  border-radius: 18px;
+  border: 3px solid #cfe6fb;
+  background: #fff;
+  font-size: 32px;
+}
+
+.match__emoji.is-selected {
+  border-color: var(--blue-bright);
+  background: #eef7ff;
+  transform: scale(1.04);
+}
+
+.match__emoji.is-matched,
+.match__word.is-matched {
+  border-color: var(--success);
+  background: #eafff1;
+  opacity: 0.65;
+}
+
+.match__word {
+  height: 62px;
+  border-radius: 18px;
+  border: 3px solid #ffd6e3;
+  background: #fff;
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--text);
+  padding: 6px 8px;
+}
+
+.match__word.is-wrong {
+  border-color: var(--danger);
+  background: #fff2f5;
+}

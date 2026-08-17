@@ -1,0 +1,49 @@
+.mascot-says {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  animation: fadeIn 0.3s ease;
+}
+
+.mascot-says__bubble {
+  position: relative;
+  margin: 0;
+  flex: 1;
+  background: var(--white);
+  border: 3px solid var(--blue-bright);
+  border-radius: 20px;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+
+.mascot-says__bubble::before {
+  content: '';
+  position: absolute;
+  left: -11px;
+  top: 50%;
+  transform: translateY(-50%);
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  border-right: 11px solid var(--blue-bright);
+}
+
+.mascot-says--success .mascot-says__bubble {
+  border-color: var(--success);
+  background: #F0FFF5;
+}
+
+.mascot-says--success .mascot-says__bubble::before {
+  border-right-color: var(--success);
+}
+
+.mascot-says--oops .mascot-says__bubble {
+  border-color: var(--danger);
+  background: #FFF3F6;
+}
+
+.mascot-says--oops .mascot-says__bubble::before {
+  border-right-color: var(--danger);
+}

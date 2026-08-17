@@ -1,0 +1,242 @@
+.learn {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadeIn 0.3s ease;
+}
+
+.learn__nav {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+}
+
+.learn__chip {
+  flex-shrink: 0;
+  border: 2px solid #cfe6fb;
+  background: #fff;
+  color: var(--text-sub);
+  font-weight: 800;
+  font-size: 13px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.learn__chip.is-active {
+  background: var(--blue-bright);
+  border-color: var(--blue-bright);
+  color: #fff;
+}
+
+.learn__block {
+  background: rgba(255, 255, 255, 0.92);
+  border: 2px solid #e3f0fc;
+  border-radius: var(--radius);
+  padding: 16px;
+  box-shadow: var(--shadow);
+}
+
+.learn__title {
+  font-size: 19px;
+  color: var(--blue-deep);
+  margin-bottom: 4px;
+}
+
+.learn__hint {
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+
+.learn__note {
+  margin: 6px 0 14px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #8a6100;
+  background: #fff8dd;
+  border: 2px dashed #ffd93d;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+
+/* ---- Thẻ từ vựng ---- */
+
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.vocab-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-align: center;
+  padding: 14px 10px 12px;
+  border-radius: 20px;
+  border: 2px solid #d8ecff;
+  background: linear-gradient(180deg, #ffffff, #f4faff);
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.vocab-card:active {
+  transform: scale(0.97);
+  border-color: var(--blue-bright);
+}
+
+.vocab-card__emoji {
+  font-size: 32px;
+  line-height: 1;
+}
+
+.vocab-card__de {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--blue-deep);
+  line-height: 1.25;
+}
+
+.vocab-card__vi {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+
+.vocab-card__ex {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #7a6a3f;
+  background: #fffbe9;
+  border-radius: 12px;
+  padding: 6px 8px;
+  width: 100%;
+}
+
+.vocab-card__ex em {
+  display: block;
+  font-style: normal;
+  color: var(--text-sub);
+  font-weight: 600;
+}
+
+.vocab-card__speaker {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: 13px;
+  opacity: 0.55;
+}
+
+/* ---- Bảng chữ cái ---- */
+
+.abc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+  gap: 8px;
+}
+
+.abc-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 6px;
+  border-radius: 18px;
+  border: 2px solid #ffe0ea;
+  background: linear-gradient(180deg, #ffffff, #fff5f8);
+}
+
+.abc-tile:active {
+  transform: scale(0.96);
+  border-color: var(--pink-cheek);
+}
+
+.abc-tile__letter {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--blue-deep);
+  line-height: 1.1;
+}
+
+.abc-tile__say {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--danger);
+}
+
+.abc-tile__emoji {
+  font-size: 22px;
+  margin-top: 2px;
+}
+
+.abc-tile__word {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.abc-tile__vi {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+
+/* ---- Ngữ pháp ---- */
+
+.grammar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.grammar-row {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: left;
+  padding: 12px 40px 12px 14px;
+  border-radius: 16px;
+  border: 2px solid #e0eefb;
+  background: #fff;
+}
+
+.grammar-row:active {
+  border-color: var(--blue-bright);
+}
+
+.grammar-row__de {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--blue-deep);
+}
+
+.grammar-row__vi {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+
+.grammar-row__speaker {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+  opacity: 0.5;
+}
+
+/* ---- Nút hành động ---- */
+
+.learn__actions {
+  display: flex;
+  gap: 10px;
+}

@@ -1,0 +1,210 @@
+.practice {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  animation: fadeIn 0.3s ease;
+}
+
+.practice__list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.practice__card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  padding: 14px;
+  border-radius: 22px;
+  border: 3px solid #cfe6fb;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.practice__card.is-done {
+  border-color: var(--success);
+  background: #f4fff8;
+}
+
+.practice__card:active {
+  transform: scale(0.98);
+}
+
+.practice__emoji {
+  font-size: 30px;
+  flex-shrink: 0;
+}
+
+.practice__text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.practice__text strong {
+  font-size: 16px;
+  color: var(--text);
+}
+
+.practice__text em {
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+
+.practice__state {
+  font-size: 22px;
+}
+
+/* ---- Trình chơi hội thoại ---- */
+
+.dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  animation: fadeIn 0.3s ease;
+}
+
+.dialog__back {
+  align-self: flex-start;
+  border: 2px solid var(--blue-bright);
+  background: #fff;
+  color: var(--blue-deep);
+  font-weight: 800;
+  font-size: 14px;
+  padding: 8px 14px;
+  border-radius: 999px;
+}
+
+.dialog__scene {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text-sub);
+  background: #fff8dd;
+  border: 2px dashed #ffd93d;
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+}
+
+.dialog__lines {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bubble {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  animation: fadeIn 0.3s ease;
+}
+
+.bubble--user {
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.bubble__body {
+  max-width: 82%;
+  border-radius: 20px;
+  padding: 11px 14px;
+  box-shadow: var(--shadow);
+}
+
+.bubble--mascot .bubble__body {
+  background: #fff;
+  border: 3px solid var(--blue-bright);
+  border-bottom-left-radius: 6px;
+}
+
+.bubble--user .bubble__body {
+  background: #eafff1;
+  border: 3px solid var(--success);
+  border-bottom-right-radius: 6px;
+}
+
+.bubble__de {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.bubble__vi {
+  margin: 3px 0 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-sub);
+}
+
+.bubble__play {
+  margin-top: 7px;
+  border: none;
+  background: rgba(77, 166, 255, 0.14);
+  color: var(--blue-deep);
+  font-weight: 800;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 999px;
+}
+
+.bubble__avatar {
+  font-size: 26px;
+}
+
+/* ---- Lựa chọn trả lời ---- */
+
+.dialog__choices {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 2px solid #e3f0fc;
+  border-radius: var(--radius);
+  padding: 14px;
+}
+
+.dialog__ask {
+  margin: 0 0 2px;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--blue-deep);
+}
+
+.choice {
+  border: 3px solid #cfe6fb;
+  background: #fff;
+  color: var(--text);
+  font-weight: 800;
+  font-size: 16px;
+  text-align: left;
+  padding: 14px 16px;
+  border-radius: 18px;
+  min-height: 54px;
+  transition: transform 0.12s, border-color 0.15s, background 0.15s;
+}
+
+.choice:active {
+  transform: scale(0.98);
+}
+
+.choice:hover {
+  border-color: var(--blue-bright);
+}
+
+.choice.is-wrong {
+  border-color: var(--danger);
+  background: #fff2f5;
+}
+
+.dialog__feedback,
+.dialog__done {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}

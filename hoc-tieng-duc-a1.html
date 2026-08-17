@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Học Tiếng Đức A1.1</title>
+<style>
+:root{
+  --bg:#f4f6fb; --card:#ffffff; --text:#1c2233; --sub:#6b7280; --line:#e5e9f2;
+  --primary:#3b5bdb; --primary-d:#2f47ac; --accent:#0ca678; --danger:#e03131; --warn:#f08c00;
+  --chip:#eef1f8; --radius:14px; --shadow:0 2px 10px rgba(30,40,80,.06);
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#12141c; --card:#1c1f2b; --text:#eef0f7; --sub:#9aa1b5; --line:#2b2f40;
+    --primary:#5b7cfa; --primary-d:#4763d1; --accent:#20c997; --danger:#ff6b6b; --warn:#ffa94d; --chip:#242838; }
+}
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg); color:var(--text); min-height:100vh;
+}
+#app{max-width:520px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;background:var(--bg);position:relative;}
+#topbar{
+  position:sticky;top:0;z-index:20;background:var(--card);border-bottom:1px solid var(--line);
+  display:flex;align-items:center;gap:8px;padding:calc(env(safe-area-inset-top,0px) + 10px) 14px 10px;
+}
+#topbar h1{font-size:17px;margin:0;font-weight:700;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.icon-btn{
+  background:var(--chip);border:none;border-radius:10px;width:36px;height:36px;font-size:18px;
+  display:flex;align-items:center;justify-content:center;color:var(--text);flex-shrink:0;
+}
+#main{flex:1;padding:14px 14px 90px;overflow-x:hidden;}
+.screen{display:none;animation:fade .18s ease;}
+.screen.active{display:block;}
+@keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+
+#bottomnav{
+  position:fixed;left:0;right:0;bottom:0;z-index:30;
+  max-width:520px;margin:0 auto;background:var(--card);border-top:1px solid var(--line);
+  display:flex;padding:6px 4px calc(env(safe-area-inset-bottom,0px) + 6px);
+}
+#bottomnav button{
+  flex:1;background:none;border:none;color:var(--sub);font-size:10.5px;padding:6px 2px;
+  display:flex;flex-direction:column;align-items:center;gap:2px;border-radius:10px;
+}
+#bottomnav button span{font-size:10.5px;}
+#bottomnav button.active{color:var(--primary);font-weight:700;}
+#bottomnav button .ic{font-size:19px;}
+
+h2.section-title{font-size:15px;margin:18px 0 8px;color:var(--sub);text-transform:uppercase;letter-spacing:.03em;}
+h2.section-title:first-child{margin-top:0;}
+
+.card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px;margin-bottom:12px;}
+.topic-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.topic-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px 12px;text-align:left;border:none;color:var(--text);}
+.topic-card .ic{font-size:26px;display:block;margin-bottom:6px;}
+.topic-card .name{font-weight:700;font-size:13.5px;line-height:1.3;display:block;}
+.topic-card .cnt{font-size:11.5px;color:var(--sub);display:block;margin-top:4px;}
+.progress-bar{height:6px;background:var(--chip);border-radius:4px;overflow:hidden;margin-top:6px;}
+.progress-bar>div{height:100%;background:var(--accent);border-radius:4px;}
+
+.segmented{display:flex;background:var(--chip);border-radius:10px;padding:3px;gap:3px;margin-bottom:14px;}
+.segmented button{flex:1;border:none;background:none;padding:8px 4px;border-radius:8px;font-size:13px;color:var(--sub);font-weight:600;}
+.segmented button.active{background:var(--card);color:var(--primary);box-shadow:0 1px 3px rgba(0,0,0,.08);}
+
+.vocab-item{display:flex;align-items:flex-start;gap:10px;padding:12px 0;border-bottom:1px solid var(--line);}
+.vocab-item:last-child{border-bottom:none;}
+.vocab-main{flex:1;min-width:0;}
+.vocab-word{font-weight:700;font-size:15.5px;}
+.vocab-word .art{color:var(--primary);font-weight:700;}
+.vocab-meaning{color:var(--sub);font-size:13.5px;margin-top:1px;}
+.vocab-example{font-style:italic;color:var(--sub);font-size:12.5px;margin-top:3px;}
+.vocab-actions{display:flex;gap:6px;flex-shrink:0;}
+.mini-btn{background:var(--chip);border:none;border-radius:8px;width:32px;height:32px;font-size:15px;color:var(--text);}
+.badge{display:inline-block;font-size:10.5px;padding:2px 7px;border-radius:20px;background:var(--chip);color:var(--sub);margin-left:6px;}
+.badge.mastered{background:rgba(12,166,120,.15);color:var(--accent);}
+.badge.new{background:rgba(59,91,219,.14);color:var(--primary);}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:var(--primary);color:#fff;border:none;
+  border-radius:12px;padding:12px 16px;font-size:14.5px;font-weight:700;width:100%;}
+.btn:active{background:var(--primary-d);}
+.btn.secondary{background:var(--chip);color:var(--text);}
+.btn.danger{background:var(--danger);color:#fff;}
+.btn.outline{background:transparent;color:var(--primary);border:1.5px solid var(--primary);}
+.btn.small{width:auto;padding:8px 12px;font-size:13px;}
+.row{display:flex;gap:8px;}
+.row>*{flex:1;}
+
+label{display:block;font-size:12.5px;color:var(--sub);margin:10px 0 4px;font-weight:600;}
+input[type=text],textarea,select{
+  width:100%;padding:11px 12px;border-radius:10px;border:1px solid var(--line);background:var(--card);
+  color:var(--text);font-size:15px;font-family:inherit;
+}
+textarea{min-height:110px;resize:vertical;}
+.field-row{display:flex;gap:8px;}
+.field-row>div{flex:1;}
+
+.grammar-box{margin-bottom:16px;}
+.grammar-box h3{font-size:14.5px;margin:0 0 6px;color:var(--primary);}
+.grammar-box p, .grammar-box li{font-size:13.5px;line-height:1.55;color:var(--text);}
+.grammar-box ul{margin:4px 0;padding-left:20px;}
+table.gtable{width:100%;border-collapse:collapse;font-size:12.5px;margin:8px 0;}
+table.gtable th,table.gtable td{border:1px solid var(--line);padding:6px 7px;text-align:left;}
+table.gtable th{background:var(--chip);}
+.example-de{color:var(--primary);font-weight:600;}
+
+.empty-state{text-align:center;color:var(--sub);padding:30px 10px;font-size:13.5px;}
+.empty-state .em{font-size:34px;display:block;margin-bottom:10px;}
+
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.stat-tile{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px;text-align:center;}
+.stat-tile .num{font-size:24px;font-weight:800;color:var(--primary);}
+.stat-tile .lbl{font-size:11.5px;color:var(--sub);margin-top:3px;}
+.topic-stat-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);}
+.topic-stat-row:last-child{border-bottom:none;}
+.topic-stat-row .tname{width:120px;font-size:12.5px;flex-shrink:0;}
+.topic-stat-row .progress-bar{flex:1;margin:0;}
+.topic-stat-row .tpct{width:38px;text-align:right;font-size:11.5px;color:var(--sub);flex-shrink:0;}
+
+.review-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 18px;text-align:center;margin-bottom:14px;min-height:180px;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.review-word{font-size:24px;font-weight:800;margin-bottom:4px;}
+.review-meta{color:var(--sub);font-size:12.5px;margin-bottom:10px;}
+.review-answer{border-top:1px dashed var(--line);margin-top:14px;padding-top:14px;width:100%;}
+.review-answer .meaning{font-size:18px;font-weight:700;color:var(--accent);}
+.review-answer .example{font-size:13.5px;color:var(--sub);margin-top:6px;font-style:italic;}
+
+.speak-target{font-size:26px;font-weight:800;text-align:center;margin:10px 0 4px;}
+.mic-btn{width:84px;height:84px;border-radius:50%;background:var(--primary);color:#fff;border:none;font-size:32px;
+  display:flex;align-items:center;justify-content:center;margin:18px auto;box-shadow:0 4px 16px rgba(59,91,219,.35);}
+.mic-btn.listening{background:var(--danger);animation:pulse 1s infinite;}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(224,49,49,.5);}70%{box-shadow:0 0 0 16px rgba(224,49,49,0);}100%{box-shadow:0 0 0 0 rgba(224,49,49,0);}}
+.result-box{text-align:center;padding:12px;border-radius:12px;margin-top:10px;font-size:14px;font-weight:700;}
+.result-box.ok{background:rgba(12,166,120,.14);color:var(--accent);}
+.result-box.bad{background:rgba(224,49,49,.12);color:var(--danger);}
+
+.exercise-q{font-size:16px;font-weight:700;text-align:center;margin:6px 0 18px;line-height:1.4;}
+.options{display:flex;flex-direction:column;gap:9px;}
+.opt-btn{width:100%;text-align:left;padding:13px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--card);color:var(--text);font-size:14.5px;}
+.opt-btn.correct{border-color:var(--accent);background:rgba(12,166,120,.14);color:var(--accent);font-weight:700;}
+.opt-btn.wrong{border-color:var(--danger);background:rgba(224,49,49,.12);color:var(--danger);font-weight:700;}
+.opt-btn.dim{opacity:.5;}
+.qprogress{text-align:center;color:var(--sub);font-size:12px;margin-bottom:4px;}
+
+.toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%);background:#1c2233;color:#fff;
+  padding:10px 18px;border-radius:30px;font-size:13px;z-index:99;box-shadow:0 4px 14px rgba(0,0,0,.25);
+  max-width:80%;text-align:center;}
+.pron-btn{background:var(--chip);border:none;border-radius:8px;width:30px;height:30px;font-size:14px;flex-shrink:0;color:var(--primary);}
+
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:50;display:flex;align-items:flex-end;}
+.modal-sheet{background:var(--card);width:100%;max-width:520px;margin:0 auto;border-radius:18px 18px 0 0;
+  padding:18px 16px calc(env(safe-area-inset-bottom,0px) + 18px);max-height:88vh;overflow-y:auto;}
+.modal-sheet h3{margin:0 0 4px;font-size:16px;}
+.close-x{position:absolute;top:14px;right:14px;}
+.hint{font-size:11.5px;color:var(--sub);line-height:1.5;margin-top:4px;}
+.filter-row{display:flex;gap:8px;margin-bottom:12px;overflow-x:auto;padding-bottom:2px;}
+.filter-row select{flex-shrink:0;width:auto;}
+</style>
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <button id="btnBack" class="icon-btn" style="display:none">←</button>
+    <h1 id="topbarTitle">Học Tiếng Đức A1.1</h1>
+  </header>
+
+  <main id="main">
+    <!-- HOME -->
+    <section id="screen-home" class="screen active">
+      <h2 class="section-title">Chủ đề A1.1</h2>
+      <div id="topicGrid" class="topic-grid"></div>
+    </section>
+
+    <!-- TOPIC DETAIL -->
+    <section id="screen-topic" class="screen">
+      <div class="segmented">
+        <button data-tab="vocab" class="active">Từ vựng</button>
+        <button data-tab="grammar">Ngữ pháp</button>
+      </div>
+      <div id="topicVocabTab"></div>
+      <div id="topicGrammarTab" style="display:none"></div>
+    </section>
+
+    <!-- REVIEW (SRS) -->
+    <section id="screen-review" class="screen">
+      <div id="reviewBody"></div>
+    </section>
+
+    <!-- SPEAK -->
+    <section id="screen-speak" class="screen">
+      <div class="filter-row">
+        <select id="speakTopicFilter"></select>
+        <select id="speakModeFilter">
+          <option value="word">Luyện theo từ</option>
+          <option value="example">Luyện theo câu ví dụ</option>
+        </select>
+      </div>
+      <div id="speakBody"></div>
+    </section>
+
+    <!-- MANAGE -->
+    <section id="screen-manage" class="screen">
+      <div class="row" style="margin-bottom:8px;">
+        <button class="btn" id="btnAddWord">+ Thêm từ mới</button>
+        <button class="btn secondary" id="btnBulkImport">📋 Nhập hàng loạt</button>
+      </div>
+      <div class="row" style="margin-bottom:12px;">
+        <button class="btn outline" id="btnManageExercise">📚 Bài tập với từ đang lọc</button>
+      </div>
+      <div class="filter-row">
+        <select id="manageTopicFilter"></select>
+      </div>
+      <div id="manageList"></div>
+    </section>
+
+    <!-- EXERCISE -->
+    <section id="screen-exercise" class="screen">
+      <div id="exerciseBody"></div>
+    </section>
+
+    <!-- STATS -->
+    <section id="screen-stats" class="screen">
+      <div id="statsBody"></div>
+    </section>
+  </main>
+
+  <nav id="bottomnav">
+    <button data-nav="home" class="active"><span class="ic">🏠</span><span>Chủ đề</span></button>
+    <button data-nav="review"><span class="ic">🔁</span><span>Ôn tập</span></button>
+    <button data-nav="speak"><span class="ic">🎤</span><span>Luyện nói</span></button>
+    <button data-nav="manage"><span class="ic">📝</span><span>Từ vựng</span></button>
+    <button data-nav="stats"><span class="ic">📊</span><span>Thống kê</span></button>
+  </nav>
+</div>
+
+<div id="modalRoot"></div>
+
+<script>
+(function(){
+"use strict";
+
+/* ===================== DATA: TOPICS & GRAMMAR ===================== */
+var TOPICS = [
+ {id:'chaohoi', name:'Chào hỏi & Giới thiệu', icon:'👋'},
+ {id:'giadinh', name:'Gia đình', icon:'👪'},
+ {id:'sodem', name:'Số đếm', icon:'🔢'},
+ {id:'thoigian', name:'Thời gian', icon:'🕐'},
+ {id:'doan', name:'Đồ ăn thức uống', icon:'🍽️'},
+ {id:'muasam', name:'Mua sắm', icon:'🛒'},
+ {id:'nhacua', name:'Nhà cửa', icon:'🏠'},
+ {id:'suckhoe', name:'Sức khỏe', icon:'💊'},
+ {id:'congviec', name:'Công việc', icon:'💼'},
+ {id:'sothich', name:'Sở thích', icon:'🎨'}
+];
+function topicName(id){ var t=TOPICS.find(function(x){return x.id===id;}); return t?t.name:id; }
+function topicIcon(id){ var t=TOPICS.find(function(x){return x.id===id;}); return t?t.icon:'📘'; }
+
+var GRAMMAR = {
+ chaohoi: '<div class="grammar-box"><h3>1. Động từ "sein" (thì là)</h3>'+
+  '<table class="gtable"><tr><th>Ngôi</th><th>Chia</th></tr>'+
+  '<tr><td>ich</td><td>bin</td></tr><tr><td>du</td><td>bist</td></tr>'+
+  '<tr><td>er/sie/es</td><td>ist</td></tr><tr><td>wir</td><td>sind</td></tr>'+
+  '<tr><td>ihr</td><td>seid</td></tr><tr><td>sie/Sie</td><td>sind</td></tr></table>'+
+  '<p class="example-de">Ich bin Lan. Wir sind aus Vietnam.</p></div>'+
+  '<div class="grammar-box"><h3>2. Đại từ nhân xưng (Personalpronomen)</h3>'+
+  '<p>ich (tôi), du (bạn - thân mật), er/sie/es (anh ấy/cô ấy/nó), wir (chúng tôi), ihr (các bạn), sie (họ), Sie (bạn/quý vị - lịch sự)</p></div>'+
+  '<div class="grammar-box"><h3>3. Câu hỏi W-Fragen cơ bản</h3><ul>'+
+  '<li><b>Wie</b> heißt du? – Bạn tên gì?</li>'+
+  '<li><b>Woher</b> kommst du? – Bạn đến từ đâu?</li>'+
+  '<li><b>Wo</b> wohnst du? – Bạn sống ở đâu?</li>'+
+  '<li><b>Wie</b> geht es dir? – Bạn khỏe không?</li></ul>'+
+  '<p>Trả lời: Ich heiße... / Ich komme aus... / Ich wohne in...</p></div>',
+
+ giadinh: '<div class="grammar-box"><h3>1. Mạo từ xác định der/die/das</h3>'+
+  '<table class="gtable"><tr><th>Giống đực</th><th>Giống cái</th><th>Giống trung</th></tr>'+
+  '<tr><td>der Vater</td><td>die Mutter</td><td>das Kind</td></tr></table>'+
+  '<p>Mỗi danh từ tiếng Đức có 1 trong 3 mạo từ, cần học thuộc cùng từ.</p></div>'+
+  '<div class="grammar-box"><h3>2. Số nhiều (Plural)</h3>'+
+  '<p>Không có quy tắc cố định — học theo từng từ. Ví dụ: der Bruder → die Brüder, das Kind → die Kinder, die Schwester → die Schwestern.</p></div>'+
+  '<div class="grammar-box"><h3>3. Tính từ sở hữu (Possessivpronomen)</h3>'+
+  '<table class="gtable"><tr><th>Ngôi</th><th>Sở hữu</th></tr>'+
+  '<tr><td>ich</td><td>mein</td></tr><tr><td>du</td><td>dein</td></tr>'+
+  '<tr><td>er/es</td><td>sein</td></tr><tr><td>sie</td><td>ihr</td></tr>'+
+  '<tr><td>wir</td><td>unser</td></tr><tr><td>ihr</td><td>euer</td></tr>'+
+  '<tr><td>sie/Sie</td><td>ihr/Ihr</td></tr></table>'+
+  '<p class="example-de">Das ist mein Vater. Meine Mutter kocht gern.</p></div>'+
+  '<div class="grammar-box"><h3>4. Động từ "haben" (có)</h3>'+
+  '<p>ich habe, du hast, er/sie/es hat, wir haben, ihr habt, sie/Sie haben</p>'+
+  '<p class="example-de">Ich habe zwei Brüder.</p></div>',
+
+ sodem: '<div class="grammar-box"><h3>1. Số đếm 0–20</h3>'+
+  '<p>null, eins, zwei, drei, vier, fünf, sechs, sieben, acht, neun, zehn, elf, zwölf, dreizehn, vierzehn, fünfzehn, sechzehn, siebzehn, achtzehn, neunzehn, zwanzig</p></div>'+
+  '<div class="grammar-box"><h3>2. Số tròn chục & ghép số</h3>'+
+  '<p>zwanzig (20), dreißig (30)... hundert (100). Số ghép đọc ngược: 21 = <b>ein</b>und<b>zwanzig</b> (một-và-hai mươi).</p></div>'+
+  '<div class="grammar-box"><h3>3. Dùng số đếm để nói tuổi</h3>'+
+  '<p class="example-de">Ich bin zwanzig Jahre alt. – Tôi 20 tuổi.</p></div>'+
+  '<div class="grammar-box"><h3>4. Đếm số lượng danh từ</h3>'+
+  '<p>Khi đếm, danh từ chuyển sang số nhiều, không cần mạo từ.</p>'+
+  '<p class="example-de">Ich habe zwei Brüder und drei Schwestern.</p></div>',
+
+ thoigian: '<div class="grammar-box"><h3>1. Hỏi & trả lời giờ</h3>'+
+  '<p><b>Wie spät ist es?</b> / <b>Wie viel Uhr ist es?</b> – Mấy giờ rồi?</p>'+
+  '<p class="example-de">Es ist drei Uhr. / Es ist halb vier. / Es ist Viertel nach zwei.</p></div>'+
+  '<div class="grammar-box"><h3>2. Giới từ chỉ thời gian</h3>'+
+  '<table class="gtable"><tr><th>Giới từ</th><th>Dùng với</th><th>Ví dụ</th></tr>'+
+  '<tr><td>um</td><td>giờ</td><td>um 7 Uhr</td></tr>'+
+  '<tr><td>am</td><td>thứ/ngày</td><td>am Montag</td></tr>'+
+  '<tr><td>im</td><td>tháng/mùa</td><td>im Januar</td></tr></table></div>'+
+  '<div class="grammar-box"><h3>3. Thứ & tháng</h3>'+
+  '<p>Montag, Dienstag, Mittwoch, Donnerstag, Freitag, Samstag, Sonntag</p>'+
+  '<p>Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember</p></div>',
+
+ doan: '<div class="grammar-box"><h3>1. Akkusativ cơ bản</h3>'+
+  '<table class="gtable"><tr><th>Nominativ</th><th>Akkusativ</th></tr>'+
+  '<tr><td>der Kaffee</td><td>den Kaffee</td></tr>'+
+  '<tr><td>die Milch</td><td>die Milch (không đổi)</td></tr>'+
+  '<tr><td>das Brot</td><td>das Brot (không đổi)</td></tr>'+
+  '<tr><td>ein Apfel</td><td>einen Apfel</td></tr></table>'+
+  '<p>Chỉ giống đực (der/ein) đổi thành den/einen ở Akkusativ (tân ngữ trực tiếp).</p></div>'+
+  '<div class="grammar-box"><h3>2. Modal verb "möchten" (muốn)</h3>'+
+  '<p>ich möchte, du möchtest, er/sie/es möchte, wir möchten, ihr möchtet, sie/Sie möchten</p>'+
+  '<p class="example-de">Ich möchte einen Kaffee, bitte.</p></div>'+
+  '<div class="grammar-box"><h3>3. Động từ "mögen" (thích)</h3>'+
+  '<p>ich mag, du magst, er/sie/es mag, wir mögen, ihr mögt, sie/Sie mögen</p>'+
+  '<p class="example-de">Ich mag kein Fleisch.</p></div>',
+
+ muasam: '<div class="grammar-box"><h3>1. Bảng Akkusativ đầy đủ</h3>'+
+  '<table class="gtable"><tr><th></th><th>Nom.</th><th>Akk.</th></tr>'+
+  '<tr><td>Giống đực</td><td>der / ein</td><td>den / einen</td></tr>'+
+  '<tr><td>Giống cái</td><td>die / eine</td><td>die / eine</td></tr>'+
+  '<tr><td>Giống trung</td><td>das / ein</td><td>das / ein</td></tr>'+
+  '<tr><td>Số nhiều</td><td>die</td><td>die</td></tr></table></div>'+
+  '<div class="grammar-box"><h3>2. Câu hỏi về giá</h3>'+
+  '<p class="example-de">Wie viel kostet das? / Was kostet der Rock?</p></div>'+
+  '<div class="grammar-box"><h3>3. Tính từ billig / teuer</h3>'+
+  '<p>billig (rẻ) – billiger (rẻ hơn); teuer (đắt) – teurer (đắt hơn)</p></div>',
+
+ nhacua: '<div class="grammar-box"><h3>1. Giới từ chỉ vị trí (+Dativ khi hỏi "wo")</h3>'+
+  '<p>in, an, auf, unter, über, neben, vor, hinter, zwischen</p>'+
+  '<p class="example-de">Der Tisch steht <b>im</b> (in dem) Zimmer. Das Bild hängt <b>an der</b> Wand.</p></div>'+
+  '<div class="grammar-box"><h3>2. Cấu trúc "es gibt" + Akkusativ</h3>'+
+  '<p class="example-de">Es gibt einen Tisch und zwei Stühle im Zimmer. – Có một cái bàn và hai cái ghế trong phòng.</p></div>'+
+  '<div class="grammar-box"><h3>3. Mạo từ đồ vật trong nhà</h3>'+
+  '<p>Ghi nhớ mạo từ cùng danh từ: der Tisch, die Küche, das Bett, das Zimmer...</p></div>',
+
+ suckhoe: '<div class="grammar-box"><h3>1. Động từ phản thân "sich fühlen"</h3>'+
+  '<p>ich fühle mich, du fühlst dich, er/sie/es fühlt sich, wir fühlen uns, ihr fühlt euch, sie/Sie fühlen sich</p>'+
+  '<p class="example-de">Wie fühlst du dich? – Ich fühle mich nicht gut.</p></div>'+
+  '<div class="grammar-box"><h3>2. Modal verbs "müssen" & "sollen"</h3>'+
+  '<p><b>müssen</b> (phải): ich muss, du musst, er/sie/es muss, wir müssen, ihr müsst, sie/Sie müssen</p>'+
+  '<p><b>sollen</b> (nên): ich soll, du sollst, er/sie/es soll, wir sollen, ihr sollt, sie/Sie sollen</p>'+
+  '<p class="example-de">Du musst zum Arzt gehen.</p></div>'+
+  '<div class="grammar-box"><h3>3. Diễn tả cơn đau</h3>'+
+  '<p class="example-de">[Bộ phận cơ thể] tut mir weh. – Der Kopf tut mir weh. / Ich habe Kopfschmerzen.</p></div>',
+
+ congviec: '<div class="grammar-box"><h3>1. Chia động từ đều đặn (thì hiện tại)</h3>'+
+  '<table class="gtable"><tr><th>Ngôi</th><th>arbeiten</th></tr>'+
+  '<tr><td>ich</td><td>arbeit<b>e</b></td></tr><tr><td>du</td><td>arbeit<b>est</b></td></tr>'+
+  '<tr><td>er/sie/es</td><td>arbeit<b>et</b></td></tr><tr><td>wir</td><td>arbeit<b>en</b></td></tr>'+
+  '<tr><td>ihr</td><td>arbeit<b>et</b></td></tr><tr><td>sie/Sie</td><td>arbeit<b>en</b></td></tr></table></div>'+
+  '<div class="grammar-box"><h3>2. Động từ tách (trennbare Verben)</h3>'+
+  '<p>anfangen, aufhören, aufstehen — động từ chính chia ở vị trí 2, tiền tố tách ra đứng cuối câu.</p>'+
+  '<p class="example-de">Ich stehe um 7 Uhr auf. Die Arbeit fängt um 8 Uhr an.</p></div>'+
+  '<div class="grammar-box"><h3>3. Trật tự từ cơ bản (Wortstellung)</h3>'+
+  '<p>Chủ ngữ – Động từ (vị trí 2) – phần còn lại của câu.</p>'+
+  '<p class="example-de">Ich arbeite jeden Tag im Büro.</p></div>',
+
+ sothich: '<div class="grammar-box"><h3>1. Modal verb "können" (có thể)</h3>'+
+  '<p>ich kann, du kannst, er/sie/es kann, wir können, ihr könnt, sie/Sie können</p>'+
+  '<p class="example-de">Ich kann gut schwimmen.</p></div>'+
+  '<div class="grammar-box"><h3>2. Cấu trúc "gern" + động từ</h3>'+
+  '<p>Thêm "gern" sau động từ để diễn tả sở thích.</p>'+
+  '<p class="example-de">Ich lese gern. Ich koche nicht gern.</p></div>'+
+  '<div class="grammar-box"><h3>3. Liên từ nối câu</h3>'+
+  '<p>und (và), aber (nhưng), oder (hoặc), denn (vì) — đứng giữa hai mệnh đề, không đổi trật tự từ.</p>'+
+  '<p class="example-de">Ich lese gern, aber ich schwimme nicht gern.</p></div>'
+};
+
+/* ===================== SEED VOCAB ===================== */
+function seedRaw(){
+ return [
+ ['chaohoi','','heißen','tên là','Ich heiße Lan.'],
+ ['chaohoi','der','Name','tên','Wie ist dein Name?'],
+ ['chaohoi','','kommen','đến từ','Ich komme aus Vietnam.'],
+ ['chaohoi','','wohnen','sống ở','Ich wohne in Berlin.'],
+ ['chaohoi','das','Land','đất nước','Welches Land besuchst du?'],
+ ['chaohoi','die','Sprache','ngôn ngữ','Ich spreche ein bisschen Deutsch.'],
+ ['chaohoi','der','Freund','bạn (nam)','Das ist mein Freund.'],
+ ['chaohoi','','Guten Tag','xin chào (ban ngày)','Guten Tag, wie geht es Ihnen?'],
+ ['chaohoi','','Tschüss','tạm biệt','Tschüss, bis morgen!'],
+ ['chaohoi','','danke','cảm ơn','Danke schön für die Hilfe.'],
+
+ ['giadinh','die','Familie','gia đình','Ich habe eine große Familie.'],
+ ['giadinh','der','Vater','bố','Mein Vater arbeitet viel.'],
+ ['giadinh','die','Mutter','mẹ','Meine Mutter kocht gern.'],
+ ['giadinh','der','Bruder','anh/em trai','Ich habe einen Bruder.'],
+ ['giadinh','die','Schwester','chị/em gái','Meine Schwester ist Studentin.'],
+ ['giadinh','das','Kind','đứa trẻ','Das Kind spielt im Garten.'],
+ ['giadinh','der','Sohn','con trai','Er ist mein Sohn.'],
+ ['giadinh','die','Tochter','con gái','Sie ist meine Tochter.'],
+
+ ['sodem','','eins','một','Eins plus eins ist zwei.'],
+ ['sodem','','zwei','hai','Ich habe zwei Kinder.'],
+ ['sodem','','drei','ba','Wir sind drei Personen.'],
+ ['sodem','','vier','bốn','Der Tisch hat vier Stühle.'],
+ ['sodem','','fünf','năm','Ich stehe um fünf Uhr auf.'],
+ ['sodem','','zehn','mười','Zehn Euro, bitte.'],
+ ['sodem','','zwanzig','hai mươi','Ich bin zwanzig Jahre alt.'],
+ ['sodem','','hundert','một trăm','Das kostet hundert Euro.'],
+
+ ['thoigian','die','Uhrzeit','giờ giấc','Wie spät ist es?'],
+ ['thoigian','die','Woche','tuần','Ich arbeite fünf Tage in der Woche.'],
+ ['thoigian','der','Tag','ngày','Heute ist ein schöner Tag.'],
+ ['thoigian','der','Monat','tháng','Der Monat hat dreißig Tage.'],
+ ['thoigian','das','Jahr','năm','Ich lerne seit einem Jahr Deutsch.'],
+ ['thoigian','','heute','hôm nay','Was machst du heute?'],
+ ['thoigian','','morgen','ngày mai','Bis morgen!'],
+ ['thoigian','','gestern','hôm qua','Gestern war ich zu Hause.'],
+
+ ['doan','das','Brot','bánh mì','Ich esse gern Brot.'],
+ ['doan','der','Kaffee','cà phê','Ich trinke einen Kaffee.'],
+ ['doan','das','Wasser','nước','Ein Glas Wasser, bitte.'],
+ ['doan','der','Apfel','táo','Der Apfel ist süß.'],
+ ['doan','das','Gemüse','rau củ','Ich esse viel Gemüse.'],
+ ['doan','das','Fleisch','thịt','Ich esse kein Fleisch.'],
+ ['doan','die','Milch','sữa','Trinkst du Milch?'],
+ ['doan','der','Zucker','đường','Ich möchte keinen Zucker.'],
+
+ ['muasam','der','Preis','giá','Wie ist der Preis?'],
+ ['muasam','','kaufen','mua','Ich kaufe ein Hemd.'],
+ ['muasam','das','Geld','tiền','Ich habe kein Geld dabei.'],
+ ['muasam','die','Kleidung','quần áo','Die Kleidung ist teuer.'],
+ ['muasam','','billig','rẻ','Das Buch ist billig.'],
+ ['muasam','','teuer','đắt','Das Auto ist teuer.'],
+ ['muasam','der','Markt','chợ','Wir gehen auf den Markt.'],
+ ['muasam','','bezahlen','thanh toán','Ich bezahle mit Karte.'],
+
+ ['nhacua','das','Haus','ngôi nhà','Das Haus ist groß.'],
+ ['nhacua','die','Wohnung','căn hộ','Ich wohne in einer Wohnung.'],
+ ['nhacua','das','Zimmer','phòng','Mein Zimmer ist klein.'],
+ ['nhacua','die','Küche','nhà bếp','Die Küche ist modern.'],
+ ['nhacua','das','Bad','phòng tắm','Das Bad ist sauber.'],
+ ['nhacua','der','Tisch','cái bàn','Der Tisch steht im Zimmer.'],
+ ['nhacua','der','Stuhl','cái ghế','Der Stuhl ist bequem.'],
+ ['nhacua','das','Bett','cái giường','Das Bett ist neu.'],
+
+ ['suckhoe','','gesund','khỏe mạnh','Ich bin gesund.'],
+ ['suckhoe','','krank','ốm, bệnh','Er ist krank.'],
+ ['suckhoe','der','Arzt','bác sĩ','Ich gehe zum Arzt.'],
+ ['suckhoe','der','Kopf','cái đầu','Mein Kopf tut weh.'],
+ ['suckhoe','der','Bauch','cái bụng','Mein Bauch tut weh.'],
+ ['suckhoe','die','Apotheke','hiệu thuốc','Die Apotheke ist geschlossen.'],
+ ['suckhoe','die','Schmerzen','cơn đau','Ich habe Schmerzen.'],
+ ['suckhoe','','sich fühlen','cảm thấy','Wie fühlst du dich?'],
+
+ ['congviec','die','Arbeit','công việc','Ich gehe zur Arbeit.'],
+ ['congviec','','arbeiten','làm việc','Ich arbeite in einem Büro.'],
+ ['congviec','der','Beruf','nghề nghiệp','Was ist dein Beruf?'],
+ ['congviec','das','Büro','văn phòng','Das Büro ist in der Stadt.'],
+ ['congviec','','anfangen','bắt đầu','Die Arbeit fängt um acht an.'],
+ ['congviec','','aufhören','kết thúc','Ich höre um fünf auf.'],
+ ['congviec','der','Chef','sếp','Mein Chef ist nett.'],
+ ['congviec','der','Kollege','đồng nghiệp','Mein Kollege heißt Peter.'],
+
+ ['sothich','das','Hobby','sở thích','Mein Hobby ist Lesen.'],
+ ['sothich','','lesen','đọc','Ich lese gern Bücher.'],
+ ['sothich','','schwimmen','bơi','Wir schwimmen im Sommer.'],
+ ['sothich','die','Musik','âm nhạc','Ich höre gern Musik.'],
+ ['sothich','','reisen','du lịch','Ich reise gern.'],
+ ['sothich','der','Sport','thể thao','Ich mache gern Sport.'],
+ ['sothich','','kochen','nấu ăn','Meine Mutter kocht gern.'],
+ ['sothich','','tanzen','nhảy múa','Sie tanzt sehr gut.']
+ ];
+}
+function buildSeedVocab(){
+ return seedRaw().map(function(r){
+  return {
+   id: uid(), topic:r[0], article:r[1], word:r[2], meaning:r[3], example:r[4],
+   box:0, nextReview: Date.now(), correct:0, wrong:0, createdAt: Date.now(), custom:false
+  };
+ });
+}
+
+/* ===================== STORAGE ===================== */
+var STORAGE_KEY = 'de_a11_app_v1';
+var DB = loadDB();
+function loadDB(){
+ var raw = localStorage.getItem(STORAGE_KEY);
+ if(raw){
+  try{
+   var parsed = JSON.parse(raw);
+   if(parsed && Array.isArray(parsed.vocab)) return parsed;
+  }catch(e){}
+ }
+ return { vocab: buildSeedVocab(), streak:{lastDate:null,count:0}, totalCorrect:0, totalWrong:0 };
+}
+function saveDB(){ localStorage.setItem(STORAGE_KEY, JSON.stringify(DB)); }
+
+/* ===================== UTILS ===================== */
+function uid(){ return 'w'+Date.now().toString(36)+Math.random().toString(36).slice(2,8); }
+function todayStr(){ var d=new Date(); return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate(); }
+function shuffle(arr){ var a=arr.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
+function sample(arr,n){ return shuffle(arr).slice(0,n); }
+function escapeHtml(s){ return (s||'').replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function displayWord(v){ return (v.article? v.article+' ':'')+v.word; }
+function normalizeText(s){
+ return (s||'').toLowerCase()
+  .replace(/ß/g,'ss')
+  .replace(/[.,!?;:„“"']/g,'')
+  .replace(/\s+/g,' ')
+  .trim();
+}
+var toastTimer=null;
+function toast(msg){
+ var el = document.getElementById('toastEl');
+ if(!el){ el=document.createElement('div'); el.id='toastEl'; el.className='toast'; document.body.appendChild(el); }
+ el.textContent = msg;
+ el.style.display='block';
+ clearTimeout(toastTimer);
+ toastTimer = setTimeout(function(){ el.style.display='none'; }, 1800);
+}
+function recordActivity(){
+ var t = todayStr();
+ if(DB.streak.lastDate === t) return;
+ var y = new Date(); y.setDate(y.getDate()-1);
+ var yStr = y.getFullYear()+'-'+(y.getMonth()+1)+'-'+y.getDate();
+ if(DB.streak.lastDate === yStr){ DB.streak.count += 1; } else { DB.streak.count = 1; }
+ DB.streak.lastDate = t;
+ saveDB();
+}
+
+/* ===================== LEITNER SRS ===================== */
+var INTERVAL_DAYS = [0,1,2,4,7,15,30];
+var DAY_MS = 86400000;
+function gradeWord(v, isCorrect){
+ if(isCorrect){
+  v.box = Math.min(v.box+1, INTERVAL_DAYS.length-1);
+  v.correct += 1;
+  DB.totalCorrect += 1;
+ }else{
+  v.box = 0;
+  v.wrong += 1;
+  DB.totalWrong += 1;
+ }
+ v.nextReview = Date.now() + INTERVAL_DAYS[v.box]*DAY_MS;
+ recordActivity();
+ saveDB();
+}
+function isMastered(v){ return v.box >= INTERVAL_DAYS.length-1; }
+function isDue(v){ return v.nextReview <= Date.now(); }
+
+/* ===================== SPEECH ===================== */
+function speak(text){
+ if(!('speechSynthesis' in window)) { toast('Trình duyệt không hỗ trợ phát âm.'); return; }
+ try{
+  window.speechSynthesis.cancel();
+  var u = new SpeechSynthesisUtterance(text);
+  u.lang = 'de-DE';
+  u.rate = 0.9;
+  window.speechSynthesis.speak(u);
+ }catch(e){ toast('Không thể phát âm.'); }
+}
+var SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+function recognizeOnce(onResult, onError){
+ if(!SpeechRec){ onError && onError('unsupported'); return null; }
+ var rec = new SpeechRec();
+ rec.lang = 'de-DE';
+ rec.interimResults = false;
+ rec.maxAlternatives = 3;
+ rec.onresult = function(ev){
+  var alts = [];
+  for(var i=0;i<ev.results[0].length;i++){ alts.push(ev.results[0][i].transcript); }
+  onResult(alts);
+ };
+ rec.onerror = function(ev){ onError && onError(ev.error); };
+ rec.start();
+ return rec;
+}
+
+/* ===================== NAVIGATION ===================== */
+var SCREENS = ['home','review','speak','manage','stats','topic','exercise'];
+var TAB_SCREENS = ['home','review','speak','manage','stats'];
+var navStack = [];
+var currentScreen = 'home';
+var currentTopicId = null;
+
+function show(screenId, opts){
+ opts = opts || {};
+ if(!opts.silentStack && TAB_SCREENS.indexOf(screenId)===-1){
+  navStack.push(currentScreen);
+ } else if(TAB_SCREENS.indexOf(screenId)!==-1){
+  navStack = [];
+ }
+ currentScreen = screenId;
+ SCREENS.forEach(function(s){
+  document.getElementById('screen-'+s).classList.toggle('active', s===screenId);
+ });
+ document.querySelectorAll('#bottomnav button').forEach(function(b){
+  b.classList.toggle('active', b.getAttribute('data-nav')===screenId);
+ });
+ document.getElementById('btnBack').style.display = navStack.length ? 'flex' : 'none';
+ var titles = {home:'Học Tiếng Đức A1.1',review:'Ôn tập ngắt quãng',speak:'Luyện nói',manage:'Từ vựng của tôi',stats:'Thống kê tiến độ',topic:topicName(currentTopicId),exercise:'Bài tập'};
+ document.getElementById('topbarTitle').textContent = titles[screenId] || '';
+ renderScreen(screenId);
+}
+function goBack(){
+ var prev = navStack.pop() || 'home';
+ currentScreen = prev;
+ SCREENS.forEach(function(s){ document.getElementById('screen-'+s).classList.toggle('active', s===prev); });
+ document.querySelectorAll('#bottomnav button').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-nav')===prev); });
+ document.getElementById('btnBack').style.display = navStack.length ? 'flex' : 'none';
+ var titles = {home:'Học Tiếng Đức A1.1',review:'Ôn tập ngắt quãng',speak:'Luyện nói',manage:'Từ vựng của tôi',stats:'Thống kê tiến độ',topic:topicName(currentTopicId),exercise:'Bài tập'};
+ document.getElementById('topbarTitle').textContent = titles[prev] || '';
+ renderScreen(prev);
+}
+document.getElementById('btnBack').addEventListener('click', goBack);
+document.querySelectorAll('#bottomnav button').forEach(function(b){
+ b.addEventListener('click', function(){ show(b.getAttribute('data-nav')); });
+});
+
+function renderScreen(id){
+ if(id==='home') renderHome();
+ else if(id==='topic') renderTopic(currentTopicId);
+ else if(id==='review') renderReview();
+ else if(id==='speak') renderSpeak();
+ else if(id==='manage') renderManage();
+ else if(id==='stats') renderStats();
+ // exercise is rendered explicitly when launched
+}
+
+/* ===================== HOME ===================== */
+function renderHome(){
+ var grid = document.getElementById('topicGrid');
+ grid.innerHTML = TOPICS.map(function(t){
+  var words = DB.vocab.filter(function(v){ return v.topic===t.id; });
+  var mastered = words.filter(isMastered).length;
+  var pct = words.length ? Math.round(mastered/words.length*100) : 0;
+  return '<button class="topic-card" data-topic="'+t.id+'">'+
+   '<span class="ic">'+t.icon+'</span>'+
+   '<span class="name">'+t.name+'</span>'+
+   '<span class="cnt">'+words.length+' từ · '+mastered+' đã thuộc</span>'+
+   '<div class="progress-bar"><div style="width:'+pct+'%"></div></div>'+
+   '</button>';
+ }).join('');
+ grid.querySelectorAll('.topic-card').forEach(function(btn){
+  btn.addEventListener('click', function(){
+   currentTopicId = btn.getAttribute('data-topic');
+   show('topic');
+  });
+ });
+}
+
+/* ===================== TOPIC DETAIL ===================== */
+function renderTopic(topicId){
+ document.getElementById('topbarTitle').textContent = topicName(topicId);
+ var words = DB.vocab.filter(function(v){ return v.topic===topicId; });
+ var vocabHtml = '<div class="row" style="margin-bottom:12px;">'+
+   '<button class="btn" id="btnTopicExercise">📚 Làm bài tập</button>'+
+   '<button class="btn secondary" id="btnTopicAddWord">+ Thêm từ</button>'+
+  '</div>';
+ if(!words.length){
+  vocabHtml += '<div class="empty-state"><span class="em">📭</span>Chưa có từ vựng nào trong chủ đề này.<br>Hãy thêm từ mới!</div>';
+ }else{
+  vocabHtml += '<div class="card">'+ words.map(vocabItemHtml).join('') + '</div>';
+ }
+ document.getElementById('topicVocabTab').innerHTML = vocabHtml;
+ document.getElementById('topicGrammarTab').innerHTML = GRAMMAR[topicId] || '<p>Chưa có nội dung.</p>';
+
+ attachVocabItemEvents(document.getElementById('topicVocabTab'));
+ document.getElementById('btnTopicExercise').addEventListener('click', function(){ startExercise(topicId); });
+ document.getElementById('btnTopicAddWord').addEventListener('click', function(){ openWordForm(null, topicId); });
+
+ var seg = document.querySelectorAll('#screen-topic .segmented button');
+ seg.forEach(function(b){
+  b.onclick = function(){
+   seg.forEach(function(x){x.classList.remove('active');});
+   b.classList.add('active');
+   var tab = b.getAttribute('data-tab');
+   document.getElementById('topicVocabTab').style.display = tab==='vocab'?'block':'none';
+   document.getElementById('topicGrammarTab').style.display = tab==='grammar'?'block':'none';
+  };
+ });
+}
+function vocabItemHtml(v){
+ var badge = isMastered(v) ? '<span class="badge mastered">Đã thuộc</span>' : (v.box===0?'<span class="badge new">Mới</span>':'');
+ return '<div class="vocab-item" data-id="'+v.id+'">'+
+  '<button class="pron-btn" data-say="'+escapeHtml(v.word)+'">🔊</button>'+
+  '<div class="vocab-main">'+
+   '<div class="vocab-word">'+(v.article?'<span class="art">'+v.article+'</span> ':'')+escapeHtml(v.word)+badge+'</div>'+
+   '<div class="vocab-meaning">'+escapeHtml(v.meaning)+'</div>'+
+   (v.example? '<div class="vocab-example">'+escapeHtml(v.example)+'</div>':'')+
+  '</div>'+
+  '<div class="vocab-actions">'+
+   '<button class="mini-btn" data-edit="'+v.id+'">✏️</button>'+
+   '<button class="mini-btn" data-del="'+v.id+'">🗑️</button>'+
+  '</div>'+
+ '</div>';
+}
+function attachVocabItemEvents(root){
+ root.querySelectorAll('[data-say]').forEach(function(b){
+  b.addEventListener('click', function(){ speak(b.getAttribute('data-say')); });
+ });
+ root.querySelectorAll('[data-edit]').forEach(function(b){
+  b.addEventListener('click', function(){
+   var v = DB.vocab.find(function(x){return x.id===b.getAttribute('data-edit');});
+   if(v) openWordForm(v);
+  });
+ });
+ root.querySelectorAll('[data-del]').forEach(function(b){
+  b.addEventListener('click', function(){
+   var id = b.getAttribute('data-del');
+   if(confirm('Xóa từ này?')){
+    DB.vocab = DB.vocab.filter(function(x){return x.id!==id;});
+    saveDB();
+    renderScreen(currentScreen);
+   }
+  });
+ });
+}
+
+/* ===================== MODAL: ADD/EDIT WORD ===================== */
+function openWordForm(existing, defaultTopic){
+ var isEdit = !!existing;
+ var v = existing || {id:null, topic:defaultTopic||TOPICS[0].id, article:'', word:'', meaning:'', example:''};
+ var topicOptions = TOPICS.map(function(t){ return '<option value="'+t.id+'"'+(t.id===v.topic?' selected':'')+'>'+t.icon+' '+t.name+'</option>'; }).join('');
+ var artOptions = ['','der','die','das'].map(function(a){
+  return '<option value="'+a+'"'+(a===v.article?' selected':'')+'>'+(a===''?'(không có)':a)+'</option>';
+ }).join('');
+ var html = '<div class="modal-overlay" id="wordModal"><div class="modal-sheet" style="position:relative">'+
+  '<button class="icon-btn close-x" id="wordModalClose">✕</button>'+
+  '<h3>'+(isEdit?'Sửa từ vựng':'Thêm từ mới')+'</h3>'+
+  '<label>Chủ đề</label><select id="fTopic">'+topicOptions+'</select>'+
+  '<div class="field-row">'+
+   '<div><label>Mạo từ</label><select id="fArticle">'+artOptions+'</select></div>'+
+   '<div style="flex:2"><label>Từ tiếng Đức</label><input type="text" id="fWord" value="'+escapeHtml(v.word)+'" placeholder="z.B. Tisch"></div>'+
+  '</div>'+
+  '<label>Nghĩa tiếng Việt</label><input type="text" id="fMeaning" value="'+escapeHtml(v.meaning)+'" placeholder="ví dụ: cái bàn">'+
+  '<label>Câu ví dụ (không bắt buộc)</label><textarea id="fExample" placeholder="Der Tisch ist groß.">'+escapeHtml(v.example)+'</textarea>'+
+  '<div class="row" style="margin-top:16px;">'+
+   (isEdit?'<button class="btn danger" id="fDelete">Xóa</button>':'')+
+   '<button class="btn" id="fSave">Lưu</button>'+
+  '</div>'+
+ '</div></div>';
+ document.getElementById('modalRoot').innerHTML = html;
+ document.getElementById('wordModalClose').addEventListener('click', closeModal);
+ document.getElementById('wordModal').addEventListener('click', function(e){ if(e.target.id==='wordModal') closeModal(); });
+ document.getElementById('fSave').addEventListener('click', function(){
+  var word = document.getElementById('fWord').value.trim();
+  var meaning = document.getElementById('fMeaning').value.trim();
+  if(!word || !meaning){ toast('Vui lòng nhập từ và nghĩa.'); return; }
+  var data = {
+   topic: document.getElementById('fTopic').value,
+   article: document.getElementById('fArticle').value,
+   word: word,
+   meaning: meaning,
+   example: document.getElementById('fExample').value.trim()
+  };
+  if(isEdit){
+   Object.assign(existing, data);
+  }else{
+   DB.vocab.push({ id:uid(), topic:data.topic, article:data.article, word:data.word, meaning:data.meaning, example:data.example,
+    box:0, nextReview:Date.now(), correct:0, wrong:0, createdAt:Date.now(), custom:true });
+  }
+  saveDB();
+  closeModal();
+  renderScreen(currentScreen);
+  toast(isEdit?'Đã cập nhật từ.':'Đã thêm từ mới.');
+ });
+ if(isEdit){
+  document.getElementById('fDelete').addEventListener('click', function(){
+   if(confirm('Xóa từ này?')){
+    DB.vocab = DB.vocab.filter(function(x){return x.id!==existing.id;});
+    saveDB(); closeModal(); renderScreen(currentScreen);
+   }
+  });
+ }
+}
+function closeModal(){ document.getElementById('modalRoot').innerHTML=''; }
+
+/* ===================== BULK IMPORT ===================== */
+function openBulkImport(){
+ var topicOptions = TOPICS.map(function(t){ return '<option value="'+t.id+'">'+t.icon+' '+t.name+'</option>'; }).join('');
+ var html = '<div class="modal-overlay" id="bulkModal"><div class="modal-sheet" style="position:relative">'+
+  '<button class="icon-btn close-x" id="bulkModalClose">✕</button>'+
+  '<h3>Nhập hàng loạt</h3>'+
+  '<p class="hint">Mỗi dòng một từ, định dạng: <b>mạo từ | từ tiếng Đức | nghĩa tiếng Việt | câu ví dụ</b><br>'+
+  'Mạo từ và câu ví dụ có thể để trống. Ví dụ:<br>'+
+  'der | Tisch | cái bàn | Der Tisch ist groß.<br>'+
+  ' | kommen | đến từ | Ich komme aus Vietnam.</p>'+
+  '<label>Chủ đề áp dụng</label><select id="bulkTopic">'+topicOptions+'</select>'+
+  '<label>Danh sách từ (dán vào đây)</label>'+
+  '<textarea id="bulkText" style="min-height:160px" placeholder="der | Tisch | cái bàn | Der Tisch ist groß."></textarea>'+
+  '<button class="btn" id="bulkSave" style="margin-top:14px;">Nhập danh sách</button>'+
+ '</div></div>';
+ document.getElementById('modalRoot').innerHTML = html;
+ document.getElementById('bulkModalClose').addEventListener('click', closeModal);
+ document.getElementById('bulkModal').addEventListener('click', function(e){ if(e.target.id==='bulkModal') closeModal(); });
+ document.getElementById('bulkSave').addEventListener('click', function(){
+  var topic = document.getElementById('bulkTopic').value;
+  var text = document.getElementById('bulkText').value;
+  var lines = text.split('\n').map(function(l){return l.trim();}).filter(Boolean);
+  var added=0, skipped=0;
+  lines.forEach(function(line){
+   var parts = line.split('|').map(function(p){return p.trim();});
+   if(parts.length < 3){ skipped++; return; }
+   var article = ['der','die','das'].indexOf(parts[0]) !== -1 ? parts[0] : '';
+   var word = parts[1], meaning = parts[2], example = parts[3]||'';
+   if(!word || !meaning){ skipped++; return; }
+   DB.vocab.push({ id:uid(), topic:topic, article:article, word:word, meaning:meaning, example:example,
+    box:0, nextReview:Date.now(), correct:0, wrong:0, createdAt:Date.now(), custom:true });
+   added++;
+  });
+  saveDB();
+  closeModal();
+  renderScreen(currentScreen);
+  toast('Đã thêm '+added+' từ'+(skipped?', bỏ qua '+skipped+' dòng lỗi.':'.'));
+ });
+}
+
+/* ===================== MANAGE SCREEN ===================== */
+function renderManage(){
+ var filterSel = document.getElementById('manageTopicFilter');
+ if(!filterSel.dataset.built){
+  filterSel.innerHTML = '<option value="all">Tất cả chủ đề</option>' + TOPICS.map(function(t){ return '<option value="'+t.id+'">'+t.icon+' '+t.name+'</option>'; }).join('');
+  filterSel.dataset.built = '1';
+  filterSel.addEventListener('change', function(){ renderManageList(); });
+ }
+ document.getElementById('btnAddWord').onclick = function(){ openWordForm(null, filterSel.value!=='all'?filterSel.value:TOPICS[0].id); };
+ document.getElementById('btnBulkImport').onclick = openBulkImport;
+ document.getElementById('btnManageExercise').onclick = function(){ startExercise(filterSel.value!=='all'?filterSel.value:null); };
+ renderManageList();
+}
+function renderManageList(){
+ var filter = document.getElementById('manageTopicFilter').value;
+ var words = DB.vocab.filter(function(v){ return filter==='all' || v.topic===filter; });
+ var list = document.getElementById('manageList');
+ if(!words.length){
+  list.innerHTML = '<div class="empty-state"><span class="em">📭</span>Chưa có từ vựng nào.</div>';
+  return;
+ }
+ // group by topic for readability
+ var byTopic = {};
+ words.forEach(function(v){ (byTopic[v.topic]=byTopic[v.topic]||[]).push(v); });
+ var html = '';
+ Object.keys(byTopic).forEach(function(tid){
+  html += '<h2 class="section-title">'+topicIcon(tid)+' '+topicName(tid)+'</h2><div class="card">'+
+   byTopic[tid].map(vocabItemHtml).join('') + '</div>';
+ });
+ list.innerHTML = html;
+ attachVocabItemEvents(list);
+}
+
+/* ===================== REVIEW (SRS) ===================== */
+var reviewQueue = [];
+var reviewIndex = 0;
+var reviewSession = {correct:0, wrong:0};
+var reviewRevealed = false;
+
+function renderReview(){
+ buildReviewQueue(false);
+ renderReviewBody();
+}
+function buildReviewQueue(all){
+ var pool = DB.vocab.filter(function(v){ return all || isDue(v); });
+ reviewQueue = shuffle(pool).slice(0, 25);
+ reviewIndex = 0;
+ reviewSession = {correct:0, wrong:0};
+ reviewRevealed = false;
+}
+function renderReviewBody(){
+ var body = document.getElementById('reviewBody');
+ if(!reviewQueue.length){
+  var dueSoon = DB.vocab.slice().filter(function(v){return !isDue(v);}).sort(function(a,b){return a.nextReview-b.nextReview;})[0];
+  var msg = dueSoon ? 'Từ tiếp theo sẽ đến hạn vào '+new Date(dueSoon.nextReview).toLocaleDateString('vi-VN') : 'Bạn chưa có từ vựng nào.';
+  body.innerHTML = '<div class="empty-state"><span class="em">🎉</span>Không có từ nào cần ôn lúc này!<br>'+msg+'</div>'+
+   (DB.vocab.length? '<button class="btn secondary" id="btnReviewAll" style="margin-top:10px;">Ôn lại tất cả</button>':'');
+  var b = document.getElementById('btnReviewAll');
+  if(b) b.addEventListener('click', function(){ buildReviewQueue(true); renderReviewBody(); });
+  return;
+ }
+ if(reviewIndex >= reviewQueue.length){
+  body.innerHTML = '<div class="card" style="text-align:center;">'+
+   '<h3 style="margin-top:0;">Hoàn thành phiên ôn tập! 🎉</h3>'+
+   '<p>Đúng: <b style="color:var(--accent)">'+reviewSession.correct+'</b> · Sai: <b style="color:var(--danger)">'+reviewSession.wrong+'</b></p>'+
+   '<button class="btn" id="btnReviewAgain">Ôn tiếp</button></div>';
+  document.getElementById('btnReviewAgain').addEventListener('click', function(){ buildReviewQueue(false); renderReviewBody(); });
+  return;
+ }
+ var v = reviewQueue[reviewIndex];
+ var progress = '<div class="qprogress">Từ '+(reviewIndex+1)+' / '+reviewQueue.length+'</div>';
+ var html = progress + '<div class="review-card">'+
+  '<div class="review-word">'+(v.article?'<span class="art" style="color:var(--primary)">'+v.article+'</span> ':'')+escapeHtml(v.word)+'</div>'+
+  '<button class="pron-btn" id="reviewSay" style="margin-top:4px;">🔊 Nghe</button>';
+ if(reviewRevealed){
+  html += '<div class="review-answer"><div class="meaning">'+escapeHtml(v.meaning)+'</div>'+
+   (v.example?'<div class="example">'+escapeHtml(v.example)+'</div>':'')+'</div>';
+ }
+ html += '</div>';
+ if(!reviewRevealed){
+  html += '<button class="btn" id="btnReveal">Hiện đáp án</button>';
+ }else{
+  html += '<div class="row"><button class="btn danger" id="btnWrong">✗ Tôi quên</button><button class="btn" id="btnCorrect" style="background:var(--accent)">✓ Tôi nhớ</button></div>';
+ }
+ body.innerHTML = html;
+ document.getElementById('reviewSay').addEventListener('click', function(){ speak(v.word); });
+ var revealBtn = document.getElementById('btnReveal');
+ if(revealBtn) revealBtn.addEventListener('click', function(){ reviewRevealed=true; renderReviewBody(); });
+ var okBtn = document.getElementById('btnCorrect');
+ var noBtn = document.getElementById('btnWrong');
+ if(okBtn) okBtn.addEventListener('click', function(){ answerReview(v,true); });
+ if(noBtn) noBtn.addEventListener('click', function(){ answerReview(v,false); });
+}
+function answerReview(v, correct){
+ gradeWord(v, correct);
+ if(correct) reviewSession.correct++; else { reviewSession.wrong++; reviewQueue.push(v); }
+ reviewIndex++;
+ reviewRevealed = false;
+ renderReviewBody();
+}
+
+/* ===================== SPEAK ===================== */
+var speakCurrent = null;
+var speakRecActive = false;
+function renderSpeak(){
+ var topicSel = document.getElementById('speakTopicFilter');
+ if(!topicSel.dataset.built){
+  topicSel.innerHTML = '<option value="all">Tất cả chủ đề</option>' + TOPICS.map(function(t){ return '<option value="'+t.id+'">'+t.icon+' '+t.name+'</option>'; }).join('');
+  topicSel.dataset.built='1';
+  topicSel.addEventListener('change', pickSpeakWord);
+  document.getElementById('speakModeFilter').addEventListener('change', pickSpeakWord);
+ }
+ pickSpeakWord();
+}
+function pickSpeakWord(){
+ var topic = document.getElementById('speakTopicFilter').value;
+ var pool = DB.vocab.filter(function(v){ return topic==='all' || v.topic===topic; });
+ if(!pool.length){
+  document.getElementById('speakBody').innerHTML = '<div class="empty-state"><span class="em">📭</span>Không có từ vựng trong phạm vi này.</div>';
+  speakCurrent = null;
+  return;
+ }
+ speakCurrent = sample(pool,1)[0];
+ renderSpeakBody();
+}
+function renderSpeakBody(){
+ if(!speakCurrent) return;
+ var mode = document.getElementById('speakModeFilter').value;
+ var v = speakCurrent;
+ var target = mode==='example' && v.example ? v.example : displayWord(v);
+ var supported = !!SpeechRec;
+ var html = '<div class="card">'+
+  '<div style="text-align:center;color:var(--sub);font-size:12px;">Hãy đọc to:</div>'+
+  '<div class="speak-target">'+escapeHtml(target)+'</div>'+
+  '<div style="text-align:center;color:var(--sub);font-size:13px;">'+escapeHtml(v.meaning)+'</div>'+
+  '<div style="text-align:center;"><button class="pron-btn" id="speakSay" style="margin-top:8px;">🔊 Nghe mẫu</button></div>';
+ if(supported){
+  html += '<button class="mic-btn" id="micBtn">🎤</button>'+
+   '<div id="speakResult"></div>';
+ } else {
+  html += '<p class="hint" style="text-align:center;margin-top:14px;">Trình duyệt này không hỗ trợ nhận diện giọng nói. Bạn vẫn có thể tự luyện phát âm theo mẫu.</p>'+
+   '<div class="row" style="margin-top:10px;"><button class="btn secondary" id="selfBad">Chưa chuẩn</button><button class="btn" id="selfOk" style="background:var(--accent)">Đã ổn</button></div>';
+ }
+ html += '</div><button class="btn outline" id="speakNext" style="margin-top:6px;">Từ tiếp theo ▶</button>';
+ document.getElementById('speakBody').innerHTML = html;
+ document.getElementById('speakSay').addEventListener('click', function(){ speak(target); });
+ document.getElementById('speakNext').addEventListener('click', pickSpeakWord);
+ if(supported){
+  document.getElementById('micBtn').addEventListener('click', function(){ doSpeakRecognition(target, v); });
+ } else {
+  document.getElementById('selfOk').addEventListener('click', function(){ gradeWord(v,true); toast('Đã ghi nhận!'); });
+  document.getElementById('selfBad').addEventListener('click', function(){ gradeWord(v,false); toast('Sẽ ôn lại sớm.'); });
+ }
+}
+function doSpeakRecognition(target, v){
+ var btn = document.getElementById('micBtn');
+ var resBox = document.getElementById('speakResult');
+ if(speakRecActive) return;
+ speakRecActive = true;
+ btn.classList.add('listening');
+ resBox.innerHTML = '<div style="text-align:center;color:var(--sub);font-size:12.5px;margin-top:8px;">Đang nghe...</div>';
+ recognizeOnce(function(alts){
+  speakRecActive = false;
+  btn.classList.remove('listening');
+  var norm = normalizeText(target);
+  var matched = alts.some(function(a){ return normalizeText(a)===norm || normalizeText(a).indexOf(norm)!==-1 || norm.indexOf(normalizeText(a))!==-1; });
+  gradeWord(v, matched);
+  resBox.innerHTML = '<div class="result-box '+(matched?'ok':'bad')+'">'+(matched?'✓ Chính xác!':'✗ Chưa đúng')+'<br><span style="font-weight:400;font-size:12.5px;">Bạn nói: "'+escapeHtml(alts[0]||'')+'"</span></div>';
+ }, function(err){
+  speakRecActive = false;
+  btn.classList.remove('listening');
+  resBox.innerHTML = '<div class="result-box bad">Không nhận diện được giọng nói. Thử lại nhé!</div>';
+ });
+}
+
+/* ===================== EXERCISE ===================== */
+var exState = null;
+var exerciseTopicScope = null;
+function startExercise(topicId){
+ exerciseTopicScope = topicId || null;
+ if(topicId) currentTopicId = topicId;
+ show('exercise');
+ renderExerciseMenu(exerciseTopicScope);
+}
+function renderExerciseMenu(topicId){
+ var pool = DB.vocab.filter(function(v){ return !topicId || v.topic===topicId; });
+ var nounPool = pool.filter(function(v){ return v.article; });
+ var html = '<div class="card">'+
+  '<h3 style="margin-top:0;">Chọn dạng bài tập'+(topicId?(' — '+topicName(topicId)):'')+'</h3>'+
+  '<div class="row" style="margin-bottom:8px;"><button class="btn" id="exMC">🔤 Trắc nghiệm</button></div>'+
+  '<div class="row" style="margin-bottom:8px;"><button class="btn secondary" id="exArt" '+(nounPool.length<1?'disabled':'')+'>🔎 Điền mạo từ</button></div>'+
+  '<div class="row"><button class="btn secondary" id="exListen">🎧 Nghe chọn từ</button></div>'+
+  (pool.length<2? '<p class="hint">Cần thêm từ vựng để tạo bài tập đầy đủ (tối thiểu 2 từ).</p>':'')+
+ '</div>';
+ document.getElementById('exerciseBody').innerHTML = html;
+ document.getElementById('exMC').addEventListener('click', function(){ genExercise('mc', pool); });
+ document.getElementById('exArt').addEventListener('click', function(){ genExercise('article', nounPool); });
+ document.getElementById('exListen').addEventListener('click', function(){ genExercise('listen', pool); });
+}
+function genExercise(type, pool){
+ if(pool.length < 2){ toast('Cần ít nhất 2 từ vựng cho bài tập này.'); return; }
+ var qCount = Math.min(8, pool.length);
+ var chosen = sample(pool, qCount);
+ exState = { type:type, pool:pool, questions:chosen, index:0, score:0, answered:false };
+ renderExerciseQ();
+}
+function renderExerciseQ(){
+ var st = exState;
+ if(st.index >= st.questions.length){
+  document.getElementById('exerciseBody').innerHTML = '<div class="card" style="text-align:center;">'+
+   '<h3 style="margin-top:0;">Kết quả</h3>'+
+   '<p style="font-size:28px;font-weight:800;color:var(--primary)">'+st.score+' / '+st.questions.length+'</p>'+
+   '<div class="row"><button class="btn secondary" id="exBackMenu">Chọn bài khác</button><button class="btn" id="exRedo">Làm lại</button></div>'+
+  '</div>';
+  document.getElementById('exBackMenu').addEventListener('click', function(){ renderExerciseMenu(exerciseTopicScope); });
+  document.getElementById('exRedo').addEventListener('click', function(){ genExercise(st.type, st.pool); });
+  return;
+ }
+ var v = st.questions[st.index];
+ var progress = '<div class="qprogress">Câu '+(st.index+1)+' / '+st.questions.length+' · Điểm: '+st.score+'</div>';
+ var qHtml = '', options = [], correctVal = '';
+
+ if(st.type==='mc'){
+  qHtml = 'Từ nào có nghĩa là:<br>"'+escapeHtml(v.meaning)+'"';
+  correctVal = displayWord(v);
+  var distractors = sample(st.pool.filter(function(x){return x.id!==v.id;}), Math.min(3, st.pool.length-1)).map(displayWord);
+  options = shuffle([correctVal].concat(distractors));
+ } else if(st.type==='article'){
+  qHtml = 'Chọn mạo từ đúng cho:<br><b>'+escapeHtml(v.word)+'</b> ('+escapeHtml(v.meaning)+')';
+  correctVal = v.article;
+  options = ['der','die','das'];
+ } else if(st.type==='listen'){
+  qHtml = '🎧 Nghe và chọn nghĩa đúng<br><button class="pron-btn" id="listenPlay" style="margin-top:8px;">🔊 Phát lại</button>';
+  correctVal = v.meaning;
+  var dmeanings = sample(st.pool.filter(function(x){return x.id!==v.id;}), Math.min(3, st.pool.length-1)).map(function(x){return x.meaning;});
+  options = shuffle([correctVal].concat(dmeanings));
+ }
+
+ var body = progress + '<div class="card"><div class="exercise-q">'+qHtml+'</div>'+
+  '<div class="options" id="optWrap">'+
+  options.map(function(o){ return '<button class="opt-btn" data-val="'+escapeHtml(o)+'">'+escapeHtml(o)+'</button>'; }).join('')+
+  '</div></div>';
+ document.getElementById('exerciseBody').innerHTML = body;
+
+ if(st.type==='listen'){
+  document.getElementById('listenPlay').addEventListener('click', function(){ speak(v.word); });
+  speak(v.word);
+ }
+ var wrap = document.getElementById('optWrap');
+ wrap.querySelectorAll('.opt-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+   if(st.answered) return;
+   st.answered = true;
+   var val = btn.getAttribute('data-val');
+   var isCorrect = val === correctVal;
+   gradeWord(v, isCorrect);
+   if(isCorrect) st.score++;
+   wrap.querySelectorAll('.opt-btn').forEach(function(b2){
+    var v2 = b2.getAttribute('data-val');
+    if(v2===correctVal) b2.classList.add('correct');
+    else if(b2===btn) b2.classList.add('wrong');
+    else b2.classList.add('dim');
+   });
+   setTimeout(function(){ st.index++; st.answered=false; renderExerciseQ(); }, 900);
+  });
+ });
+}
+
+/* ===================== STATS ===================== */
+function renderStats(){
+ var total = DB.vocab.length;
+ var mastered = DB.vocab.filter(isMastered).length;
+ var due = DB.vocab.filter(isDue).length;
+ var streak = DB.streak.count || 0;
+ var html = '<div class="stat-grid">'+
+  '<div class="stat-tile"><div class="num">'+total+'</div><div class="lbl">Tổng số từ</div></div>'+
+  '<div class="stat-tile"><div class="num">'+mastered+'</div><div class="lbl">Đã thuộc</div></div>'+
+  '<div class="stat-tile"><div class="num">'+due+'</div><div class="lbl">Cần ôn hôm nay</div></div>'+
+  '<div class="stat-tile"><div class="num">'+streak+'🔥</div><div class="lbl">Ngày học liên tiếp</div></div>'+
+ '</div>';
+ html += '<div class="card"><p style="margin:0 0 4px;font-size:13px;">Tổng lượt trả lời đúng: <b style="color:var(--accent)">'+(DB.totalCorrect||0)+'</b></p>'+
+  '<p style="margin:0;font-size:13px;">Tổng lượt trả lời sai: <b style="color:var(--danger)">'+(DB.totalWrong||0)+'</b></p></div>';
+ html += '<h2 class="section-title">Tiến độ theo chủ đề</h2><div class="card">';
+ html += TOPICS.map(function(t){
+  var words = DB.vocab.filter(function(v){return v.topic===t.id;});
+  var m = words.filter(isMastered).length;
+  var pct = words.length ? Math.round(m/words.length*100) : 0;
+  return '<div class="topic-stat-row"><div class="tname">'+t.icon+' '+t.name+'</div>'+
+   '<div class="progress-bar"><div style="width:'+pct+'%"></div></div><div class="tpct">'+pct+'%</div></div>';
+ }).join('');
+ html += '</div>';
+ document.getElementById('statsBody').innerHTML = html;
+}
+
+/* ===================== INIT ===================== */
+saveDB();
+show('home', {silentStack:true});
+
+})();
+</script>
+</body>
+</html>

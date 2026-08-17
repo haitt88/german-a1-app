@@ -1,0 +1,40 @@
+.big-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 14px 24px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 17px;
+  font-weight: 700;
+  width: 100%;
+  transition: transform 0.15s, box-shadow 0.15s;
+  box-shadow: var(--shadow);
+}
+
+.big-btn:active:not(:disabled) {
+  transform: scale(0.97);
+}
+
+.big-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.big-btn--primary {
+  background: linear-gradient(135deg, var(--blue-bright), var(--blue-deep));
+  color: var(--white);
+}
+
+.big-btn--secondary {
+  background: var(--white);
+  color: var(--blue-deep);
+  border: 2px solid var(--blue-bright);
+}
+
+.big-btn--success {
+  background: linear-gradient(135deg, var(--success), #3aad5c);
+  color: var(--white);
+}
